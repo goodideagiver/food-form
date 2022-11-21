@@ -41,12 +41,18 @@
   gap: 1rem;
 }
 
+.form label > span {
+  flex: 1 1;
+  text-align: start;
+}
+
 .form input,
 .form select {
   padding: 8px;
   border-radius: 8px;
   border: none;
   flex: 1 1;
+  width: 100%;
 }
 
 .actions {

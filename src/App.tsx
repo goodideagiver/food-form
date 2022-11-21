@@ -28,11 +28,11 @@ export const App = () => {
               <h1>Dishes selector</h1>
               <Form className='form'>
                 <label>
-                  Dish name:
+                  <span>Dish name:</span>
                   <Field name='name' />
                 </label>
                 <label>
-                  Dish type:
+                  <span>Dish type:</span>
                   <Field disabled={!nameIsSet} as='select' name='dishType'>
                     <option value='unset'>unset</option>
                     <option value='Pizza'>Pizza</option>
@@ -45,11 +45,11 @@ export const App = () => {
                     {dishType === 'Pizza' && (
                       <>
                         <label>
-                          Number of slices:
+                          <span>Number of slices:</span>
                           <Field name='no_of_slices' />
                         </label>
                         <label>
-                          Diameter:
+                          <span>Diameter:</span>
                           <Field name='no_of_slices' />
                         </label>
                       </>
@@ -57,7 +57,7 @@ export const App = () => {
                     {dishType === 'Soup' && (
                       <>
                         <label>
-                          Spiciness scale:
+                          <span>Spiciness scale:</span>
                           <Field
                             min='1'
                             max='10'
@@ -70,7 +70,7 @@ export const App = () => {
                     {dishType === 'Sandwich' && (
                       <>
                         <label>
-                          Slices of bread:
+                          <span>Slices of bread:</span>
                           <Field type='number' name='slices_of_bread' />
                         </label>
                       </>

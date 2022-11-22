@@ -1,4 +1,5 @@
 import { Field, Form, Formik, FormikProps } from 'formik'
+import { FormChoices } from './components/FormChoices'
 import { FormFields } from './formTypes'
 
 const initialValues: FormFields = {
@@ -22,6 +23,8 @@ export const App = () => {
         const { dishType, name } = props.values
         const nameIsSet = name && name.trim().length > 0
 
+        const submitDisabled = !nameIsSet || dishType === 'unset'
+
         return (
           <div className='form-main'>
             <div className='form-container'>
@@ -40,45 +43,9 @@ export const App = () => {
                     <option value='Sandwich'>Sandwich</option>
                   </Field>
                 </label>
-                {nameIsSet && (
-                  <>
-                    {dishType === 'Pizza' && (
-                      <>
-                        <label>
-                          <span>Number of slices:</span>
-                          <Field name='no_of_slices' />
-                        </label>
-                        <label>
-                          <span>Diameter:</span>
-                          <Field name='no_of_slices' />
-                        </label>
-                      </>
-                    )}
-                    {dishType === 'Soup' && (
-                      <>
-                        <label>
-                          <span>Spiciness scale:</span>
-                          <Field
-                            min='1'
-                            max='10'
-                            type='range'
-                            name='spiciness_scale'
-                          />
-                        </label>
-                      </>
-                    )}
-                    {dishType === 'Sandwich' && (
-                      <>
-                        <label>
-                          <span>Slices of bread:</span>
-                          <Field type='number' name='slices_of_bread' />
-                        </label>
-                      </>
-                    )}
-                  </>
-                )}
+                <FormChoices dishType={dishType} />
                 <div className='actions'>
-                  <button disabled={!nameIsSet} type='submit'>
+                  <button disabled={submitDisabled} type='submit'>
                     Submit
                   </button>
                   <button type='reset'>Reset</button>

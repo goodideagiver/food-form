@@ -116,3 +116,14 @@
   width: 90%;
   margin: 0 auto;
 }
+
+.loader-wrapper {
+  text-align: center;
+  margin: 1rem auto;
+}
+
+.loader {
+  width: 100px;
+  height: 100px;
+  border-radius: 8px;
+}

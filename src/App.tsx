@@ -1,4 +1,4 @@
-import { Field, Form, Formik, FormikProps } from 'formik'
+import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik'
 import { FormChoices } from './components/FormChoices'
 import { nameValidate, validatePreparationTime } from './fieldValidators'
 import { formSubmitHandler } from './formHelpers'
@@ -15,65 +15,90 @@ const initialValues: FormFields = {
 }
 
 export const App = () => {
-  const onFormSubmit = (values: FormFields) => {
-    formSubmitHandler(values, values.dishType)
+  const onFormSubmit = async (
+    values: FormFields,
+    actions: FormikHelpers<FormFields>
+  ) => {
+    actions.setStatus({ loading: true })
+    try {
+      await formSubmitHandler(values, values.dishType)
+      actions.setStatus({ loading: false })
+    } catch (error) {
+      actions.setStatus({ error: true, loading: false })
+    }
   }
 
   return (
     <Formik initialValues={initialValues} onSubmit={onFormSubmit}>
       {(props: FormikProps<FormFields>) => {
         const { dishType, name } = props.values
+        const isLoading = props.status?.loading
+        const hasErrorWhenSendingData = props.status?.error
         const errors = props.errors
         const touched = props.touched
         const nameIsSet = name && name.trim().length > 0
         const preparationTimeValid = !errors.preparationTime
 
         const submitDisabled =
-          !nameIsSet || dishType === 'unset' || !preparationTimeValid
+          !nameIsSet ||
+          dishType === 'unset' ||
+          !preparationTimeValid ||
+          isLoading
 
         return (
           <div className='form-main'>
             <div className='form-container'>
               <h1 className='form-title'>Dishes selector</h1>
-              <Form className='form'>
-                <label>
-                  <span>Dish name:</span>
-                  <Field validate={nameValidate} name='name' />
-                </label>
-                {errors.name && touched.name && (
-                  <p className='error'>{errors.name}</p>
-                )}
-                <label>
-                  <span>Preparation time:</span>
-                  <Field
-                    validate={validatePreparationTime}
-                    name='preparationTime'
-                  />
-                </label>
-                {errors.preparationTime && touched.preparationTime && (
-                  <p className='error'>{errors.preparationTime}</p>
-                )}
-                <label>
-                  <span>Dish type:</span>
-                  <Field
-                    disabled={!nameIsSet || !preparationTimeValid}
-                    as='select'
-                    name='dishType'
-                  >
-                    <option value='unset'>unset</option>
-                    <option value='Pizza'>Pizza</option>
-                    <option value='Soup'>Soup</option>
-                    <option value='Sandwich'>Sandwich</option>
-                  </Field>
-                </label>
-                <FormChoices dishType={dishType} />
-                <div className='actions'>
-                  <button disabled={submitDisabled} type='submit'>
-                    Submit
-                  </button>
-                  <button type='reset'>Reset</button>
+              {hasErrorWhenSendingData && (
+                <p className='error'>There was an error when sending data</p>
+              )}
+              {isLoading && (
+                <div className='loader-wrapper'>
+                  <img className='loader' src='/pizza-food.gif' />
+                  <p>Sending your delicious dish</p>
                 </div>
-              </Form>
+              )}
+              {!isLoading && (
+                <Form className='form'>
+                  <label>
+                    <span>Dish name:</span>
+                    <Field validate={nameValidate} name='name' />
+                  </label>
+                  {errors.name && touched.name && (
+                    <p className='error'>{errors.name}</p>
+                  )}
+                  <label>
+                    <span>Preparation time:</span>
+                    <Field
+                      validate={validatePreparationTime}
+                      name='preparationTime'
+                    />
+                  </label>
+                  {errors.preparationTime && touched.preparationTime && (
+                    <p className='error'>{errors.preparationTime}</p>
+                  )}
+                  <label>
+                    <span>Dish type:</span>
+                    <Field
+                      disabled={!nameIsSet || !preparationTimeValid}
+                      as='select'
+                      name='dishType'
+                    >
+                      <option value='unset'>unset</option>
+                      <option value='Pizza'>Pizza</option>
+                      <option value='Soup'>Soup</option>
+                      <option value='Sandwich'>Sandwich</option>
+                    </Field>
+                  </label>
+                  <FormChoices dishType={dishType} />
+                  <div className='actions'>
+                    <button disabled={submitDisabled} type='submit'>
+                      Submit
+                    </button>
+                    <button type='reset'>Reset</button>
+                  </div>
+                </Form>
+              )}
             </div>
           </div>
         )

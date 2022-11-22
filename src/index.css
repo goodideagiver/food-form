@@ -66,6 +66,13 @@
   background-color: lightblue;
 }
 
+.error {
+  text-align: center;
+  padding: 0 1rem;
+  color: rgb(174, 58, 58);
+  font-style: italic;
+}
+
 .actions {
   display: flex;
   gap: 0.3rem;
@@ -91,4 +98,21 @@
 
 .actions button[type='reset'] {
   background-color: rgb(184, 60, 60);
+}
+
+.spice-comment {
+  justify-content: center;
+  display: flex;
+  gap: 1rem;
+  padding: 0.3rem 1rem;
+  font-style: italic;
+  background-color: white;
+  border-radius: 4px;
+  box-shadow: 2px 2px 0 rgba(0, 0, 0, 0.229), 0 0 5px rgba(0, 0, 0, 0.162);
+  transition: background-color 0.1s;
+  color: white;
+  font-weight: bold;
+  text-shadow: 1px 1px 0 rgba(0, 0, 0, 0.446);
+  width: 90%;
+  margin: 0 auto;
 }

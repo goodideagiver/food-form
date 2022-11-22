@@ -25,6 +25,10 @@ export const validatePreparationTime = (value: string) => {
     return 'Seconds must be between 0 and 59'
   }
 
+  if (hoursInt === 0 && minutesInt === 0 && secondsInt === 0) {
+    return 'Preparation time must be greater than 0'
+  }
+
   if (!value.match(/^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/))
     return 'Please use HH:MM:SS time format'
 

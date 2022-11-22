@@ -19,6 +19,10 @@ const validatePizza = (values: FormFields) => {
     throw new Error('Diameter must be a number')
   }
 
+  if (values.diameter < 1) {
+    throw new Error('Diameter must be greater than 0')
+  }
+
   if (
     !values.no_of_slices ||
     values.no_of_slices < 0 ||

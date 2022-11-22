@@ -1,5 +1,6 @@
 import { Field, Form, Formik, FormikProps } from 'formik'
 import { FormChoices } from './components/FormChoices'
+import { formSubmitHandler } from './formHelpers'
 import { FormFields } from './formTypes'
 
 const initialValues: FormFields = {
@@ -13,12 +14,12 @@ const initialValues: FormFields = {
 }
 
 export const App = () => {
-  const formSubmitHandler = (values: FormFields) => {
-    alert(JSON.stringify(values, null, 2))
+  const onFormSubmit = (values: FormFields) => {
+    formSubmitHandler(values, values.dishType)
   }
 
   return (
-    <Formik initialValues={initialValues} onSubmit={formSubmitHandler}>
+    <Formik initialValues={initialValues} onSubmit={onFormSubmit}>
       {(props: FormikProps<FormFields>) => {
         const { dishType, name } = props.values
         const nameIsSet = name && name.trim().length > 0

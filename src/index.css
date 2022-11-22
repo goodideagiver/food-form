@@ -20,13 +20,13 @@
 }
 
 .form-container {
-  background-color: bisque;
+  background-color: white;
   display: flex;
   flex-direction: column;
   gap: 2rem;
-  text-align: center;
-  padding: 1rem;
-  border-radius: 1rem;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 7px 7px 0 rgba(1, 1, 1, 0.3);
 }
 
 .form {
@@ -35,10 +35,20 @@
   gap: 1rem;
 }
 
+.form-title {
+  background-color: rgb(170, 70, 70);
+  text-align: center;
+  padding: 1rem;
+  font-weight: 600;
+  color: white;
+}
+
 .form label {
   display: flex;
   justify-content: space-between;
   gap: 1rem;
+  padding: 0 1rem;
+  align-items: center;
 }
 
 .form label > span {
@@ -49,22 +59,24 @@
 .form input,
 .form select {
   padding: 8px;
-  border-radius: 8px;
+  border-radius: 4px;
   border: none;
   flex: 1 1;
   width: 100%;
+  background-color: lightblue;
 }
 
 .actions {
   display: flex;
   gap: 0.3rem;
   align-items: center;
+  padding: 1rem;
 }
 
 .actions button {
   flex: 1 1;
-  padding: 1rem;
-  border-radius: 1rem;
+  padding: 0.7rem;
+  border-radius: 4px;
   border: none;
   background-color: blue;
   color: white;
@@ -72,6 +84,11 @@
 }
 
 .actions button:disabled {
-  opacity: 0.6;
+  opacity: 0.4;
+  background-color: gray;
   cursor: not-allowed;
+}
+
+.actions button[type='reset'] {
+  background-color: rgb(184, 60, 60);
 }

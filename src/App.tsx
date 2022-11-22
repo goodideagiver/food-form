@@ -28,7 +28,7 @@ export const App = () => {
         return (
           <div className='form-main'>
             <div className='form-container'>
-              <h1>Dishes selector</h1>
+              <h1 className='form-title'>Dishes selector</h1>
               <Form className='form'>
                 <label>
                   <span>Dish name:</span>

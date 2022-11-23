@@ -1,5 +1,6 @@
 import { Field, Form, Formik, FormikHelpers, FormikProps } from 'formik'
 import { FormChoices } from './components/FormChoices'
+import { PreparationTimeDisplay } from './components/PreparationTimeDisplay'
 import { nameValidate, validatePreparationTime } from './fieldValidators'
 import { formSubmitHandler } from './formHelpers'
 import { FormFields } from './formTypes'
@@ -77,6 +78,9 @@ export const App = () => {
                   {errors.preparationTime && touched.preparationTime && (
                     <p className='error'>{errors.preparationTime}</p>
                   )}
+                  <PreparationTimeDisplay
+                    preparationTime={props.values.preparationTime}
+                  />
                   <label>
                     <span>Dish type:</span>
                     <Field

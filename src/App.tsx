@@ -5,6 +5,8 @@ import { nameValidate, validatePreparationTime } from './fieldValidators'
 import { formSubmitHandler } from './formHelpers'
 import { FormFields } from './formTypes'
 
+import pizzaGif from './../public/pizza-food.gif'
+
 const initialValues: FormFields = {
   name: '',
   dishType: 'unset',
@@ -55,7 +57,7 @@ export const App = () => {
               )}
               {isLoading && (
                 <div className='loader-wrapper'>
-                  <img className='loader' src='/pizza-food.gif' />
+                  <img className='loader' src={pizzaGif} />
                   <p>Sending your delicious dish</p>
                 </div>
               )}

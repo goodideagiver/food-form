@@ -40,7 +40,7 @@ export const SoupFields = () => {
         className='spice-comment'
       >
         <span>{value}</span>
-        <span>{spicinessComment[+value]}</span>
+        <span>{spicinessComment[+value - 1]}</span>
       </div>
     </>
   )

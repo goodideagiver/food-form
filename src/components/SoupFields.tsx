@@ -3,19 +3,26 @@ import { useField } from 'formik'
 export const SoupFields = () => {
   const [field] = useField('spiciness_scale')
 
-  const spicinessComment = {
-    1: 'Not spicy at all 🥶',
-    2: 'A little spicy',
-    3: 'Some spice',
-    4: 'Almost mildly spicy',
-    5: 'Mildly spicy',
-    6: 'Spicy',
-    7: 'Very spicy',
-    8: 'Extremely spicy',
-    9: 'Hot',
-    10: 'Very hot 🔥',
-  }
-
+  const spicinessComment = [
+    'Not spicy at all 🥶',
+    ,
+    'A little spicy',
+    ,
+    'Some spice',
+    ,
+    'Almost mildly spicy',
+    ,
+    'Mildly spicy',
+    ,
+    'Spicy',
+    ,
+    'Very spicy',
+    ,
+    'Extremely spicy',
+    ,
+    'Hot',
+    'Very hot 🔥',
+  ]
   const value: string = field.value.toString()
 
   return (
@@ -33,7 +40,7 @@ export const SoupFields = () => {
         className='spice-comment'
       >
         <span>{value}</span>
-        <span>{spicinessComment[value]}</span>
+        <span>{spicinessComment[+value]}</span>
       </div>
     </>
   )

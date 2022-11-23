@@ -63,11 +63,15 @@ export const formSubmitHandler = async (values: FormFields, dishType: Dish) => {
 
   let request = {}
 
+  const commonData = {
+    name: values.name,
+    preparation_time: values.preparationTime,
+    type: dishType.toLowerCase(),
+  }
+
   if (dishType === 'Pizza') {
     request = {
-      name: values.name,
-      preparation_time: values.preparationTime,
-      type: dishType.toLowerCase(),
+      ...commonData,
       no_of_slices: values.no_of_slices,
       diameter: values.diameter,
     }
@@ -75,18 +79,14 @@ export const formSubmitHandler = async (values: FormFields, dishType: Dish) => {
 
   if (dishType === 'Soup') {
     request = {
-      name: values.name,
-      preparation_time: values.preparationTime,
-      type: dishType.toLowerCase(),
+      ...commonData,
       spiciness_scale: values.spiciness_scale,
     }
   }
 
   if (dishType === 'Sandwich') {
     request = {
-      name: values.name,
-      preparation_time: values.preparationTime,
-      type: dishType.toLowerCase(),
+      ...commonData,
       slices_of_bread: values.slices_of_bread,
     }
   }

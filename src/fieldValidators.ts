@@ -13,8 +13,8 @@ export const validatePreparationTime = (value: string) => {
 
   if (!value) return 'Preparation time is required'
 
-  if (hoursInt < 0 || hoursInt > 23) {
-    return 'Hours must be between 0 and 23'
+  if (hoursInt < 0) {
+    return 'Hours must be 0 or larger'
   }
 
   if (minutesInt < 0 || minutesInt > 59) {
@@ -29,7 +29,7 @@ export const validatePreparationTime = (value: string) => {
     return 'Preparation time must be greater than 0'
   }
 
-  if (!value.match(/^([0-1][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/))
+  if (!value.match(/^([0-9][0-9]|2[0-3]):[0-5][0-9]:[0-5][0-9]$/))
     return 'Please use HH:MM:SS time format'
 
   return undefined

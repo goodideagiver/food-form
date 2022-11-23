@@ -5,21 +5,21 @@ export const SoupFields = () => {
 
   const spicinessComment = [
     'Not spicy at all 🥶',
-    ,
+
     'A little spicy',
-    ,
+
     'Some spice',
-    ,
+
     'Almost mildly spicy',
-    ,
+
     'Mildly spicy',
-    ,
+
     'Spicy',
-    ,
+
     'Very spicy',
-    ,
+
     'Extremely spicy',
-    ,
+
     'Hot',
     'Very hot 🔥',
   ]

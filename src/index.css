@@ -135,3 +135,14 @@
   gap: 2px;
   align-items: center;
 }
+
+.pizza-slices {
+  max-width: 200px;
+  text-align: center;
+  margin: 0 auto;
+  max-height: 100px;
+  overflow-y: auto;
+  background-color: rgba(0, 0, 0, 0.162);
+  border-radius: 4px;
+  padding: 4px;
+}
